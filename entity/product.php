@@ -1,6 +1,7 @@
 <?php
+  declare(strict_types=1);
+
 class Product {
-  public int $id;
   public string $name;
   public int $price;
   public string $image_url;
@@ -8,7 +9,6 @@ class Product {
 
   public function __construct($product)
   {
-    $this->id = $product["id"];
     $this->name = $product["name"];
     $this->price = $product["price"];
     $this->image_url = $product["image_url"];

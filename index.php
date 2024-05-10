@@ -13,6 +13,7 @@
     <?php
       include_once ("conection.php");
       include_once ("./model/product_model.php");
+      include_once ("./entity/product.php");
 
       $connection = new ConnectionDB();
       $peticiones = new ProductModel($connection);
@@ -21,7 +22,7 @@
       
       if ($productos) {
         foreach ($productos as $producto) {
-          echo "id: " . $producto['id'] . ", Nombre: " . $producto['name'] . ", Precio: " . $producto['price'] . "<br>";
+          echo "id: " . $producto['id'] . ", Nombre: " . $producto['name'] . ", Precio: " . $producto['price'] . ", Image: " . $producto["image_url"] . "<br>";
         }
       } else {
         echo "No se encontraron productos.";
@@ -30,13 +31,16 @@
       //
       
       $prod = [
-        "name" => "aycho",
+        "name" => "pablo",
         "price" => 23,
         "image_url" => "image7",
         "created_at" => date("Y-m-d")
       ];
 
-      $post_product = $peticiones->create_products($prod);
+      $new_product = new Product($prod);
+      $post_product = $peticiones->create_products($new_product);
+    
+
       ?>
 </body>
 </html>

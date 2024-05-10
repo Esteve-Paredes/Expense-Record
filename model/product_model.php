@@ -1,6 +1,5 @@
 <?php
-
-  include_once("./entity/product.php");
+  declare(strict_types=1);
 
   class ProductModel {
     private $db;
@@ -35,7 +34,7 @@
 
     }
 
-    function create_products($product): bool {
+    function create_products(Product $product): bool {
       try {
         $this->db->connect();
         $conection = $this->db->get_connection();
@@ -51,6 +50,7 @@
 
         foreach ($product as $key => $value) {
           $prepare->bindValue(':' . $key, $value);
+          echo $key . ": " . $value . "<br>";
         }
 
         $prepare->execute();
